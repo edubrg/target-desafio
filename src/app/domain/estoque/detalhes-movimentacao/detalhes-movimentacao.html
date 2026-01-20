@@ -1,0 +1,103 @@
+<app-page-layout>
+    <header class="header-container">
+        <div>
+            <h1>Movimentações - {{ dadosMovimentacao?.descricaoProduto || 'Carregando...' }}</h1>
+            <div class="detalhes-produto">
+                <p><strong>Código:</strong> {{ dadosMovimentacao?.codigoProduto }}</p>
+                <p><strong>Descrição:</strong> {{ dadosMovimentacao?.descricaoProduto }}</p>
+                <p><strong>Estoque:</strong> <span [class.estoque-negativo]="(dadosMovimentacao?.estoque || 0) < 0"> {{ dadosMovimentacao?.estoque }}</span></p>
+            </div>
+            <div class="unidades-container">
+                <p><strong>Unidades:</strong></p>
+                <ul class="unidades">
+                    @for (unidade of dadosMovimentacao?.unidade; track unidade.unidade) {
+                    <li>{{ unidade.unidade }} ({{ unidade.fator }})</li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <button matButton="outlined" color="warn" (click)="abrirModalLancar()">
+            <mat-icon>add</mat-icon>
+            Lançar
+        </button>
+    </header>
+    <content>
+        <form [formGroup]="filtroForm" class="filtro-form">
+            <div class="filtro-container">
+                <mat-form-field appearance="outline" class="filtro-date-range">
+                    <mat-label>Período</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate formControlName="dataInicio" placeholder="Data inicial">
+                        <input matEndDate formControlName="dataFim" placeholder="Data final">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="filtro-busca">
+                    <mat-label>Buscar</mat-label>
+                    <input matInput formControlName="buscaDescricao" placeholder="Código ou descrição">
+                    <mat-icon matPrefix>search</mat-icon>
+                </mat-form-field>
+
+                <button matIconButton type="button" (click)="limparFiltros()" class="btn-limpar">
+                    <mat-icon>clear</mat-icon>
+                </button>
+            </div>
+        </form>
+
+        <app-table-container [loading]="loading">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="codigo">
+                    <th mat-header-cell *matHeaderCellDef> Código </th>
+                    <td mat-cell *matCellDef="let movimentacao"> {{ movimentacao.codigoMovimentacao }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="descricao">
+                    <th mat-header-cell *matHeaderCellDef> Descrição </th>
+                    <td mat-cell *matCellDef="let movimentacao"> {{ movimentacao.descricaoMovimentacao }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="tipoMovimentacao">
+                    <th mat-header-cell *matHeaderCellDef> Tipo Movimentação </th>
+                    <td mat-cell *matCellDef="let movimentacao">
+                        {{ movimentacao.tipoMovimentacao === TipoMovimentacao.ENTRADA ? 'Entrada' :
+                        movimentacao.tipoMovimentacao === TipoMovimentacao.SAIDA ? 'Saída' :
+                        movimentacao.tipoMovimentacao === TipoMovimentacao.ESTORNO ? 'Estorno' :
+                        movimentacao.tipoMovimentacao }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="data">
+                    <th mat-header-cell *matHeaderCellDef> Data/Hora </th>
+                    <td mat-cell *matCellDef="let movimentacao"> {{ movimentacao.dataMovimentacao | date:'dd/MM/yyyy HH:mm' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="quantidade">
+                    <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+                    <td mat-cell *matCellDef="let movimentacao">
+                        <span [class.valor-negativo]="movimentacao.quantidadeMovimentacao < 0">
+                            {{ movimentacao.quantidadeMovimentacao }}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="acoes">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let movimentacao">
+                        @if (exibirBotaoEstornar(movimentacao.codigoMovimentacao, movimentacao.tipoMovimentacao)) {
+                            <button mat-icon-button color="warn" (click)="estornarMovimentacao(movimentacao)"
+                                matTooltip="Estornar movimentação" matTooltipPosition="above">
+                                <mat-icon>undo</mat-icon>
+                            </button>
+                        }
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </app-table-container>
+    </content>
+</app-page-layout>

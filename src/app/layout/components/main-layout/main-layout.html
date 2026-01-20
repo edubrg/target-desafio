@@ -1,0 +1,15 @@
+<main class="container-layout">
+  <app-header></app-header>
+
+  <mat-drawer-container class="container-layout-drawer" autosize>
+    <mat-drawer #drawer class="sidenav-layout" [class.collapsed]="isSidenavCollapsed" mode="side" opened>
+      <app-sidenav [isCollapsed]="isSidenavCollapsed" (toggleCollapse)="toggleSidenav()"></app-sidenav>
+    </mat-drawer>
+    
+    <div class="content-layout">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+</main>
+
+

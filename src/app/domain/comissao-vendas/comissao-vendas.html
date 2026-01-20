@@ -1,0 +1,40 @@
+<app-page-layout>
+  <header class="header-container">
+    <h1>Comissão de Vendas</h1>
+  </header>
+  
+  <content>
+    <h2>Ranking de Vendedores</h2>
+    <app-table-container [loading]="loading">
+      <table mat-table [dataSource]="comissoes" class="mat-elevation-z8">
+        <ng-container matColumnDef="posicao">
+          <th mat-header-cell *matHeaderCellDef>Posição</th>
+          <td mat-cell *matCellDef="let comissao; let i = index">{{ i + 1 }}º</td>
+        </ng-container>
+
+        <ng-container matColumnDef="vendedor">
+          <th mat-header-cell *matHeaderCellDef>Vendedor</th>
+          <td mat-cell *matCellDef="let comissao">{{ comissao.vendedor }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantidadeVendas">
+          <th mat-header-cell *matHeaderCellDef>Qtd. Vendas</th>
+          <td mat-cell *matCellDef="let comissao">{{ comissao.quantidadeVendas }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalVendas">
+          <th mat-header-cell *matHeaderCellDef>Total de Vendas</th>
+          <td mat-cell *matCellDef="let comissao">{{ formatarMoeda(comissao.totalVendas) }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalComissao">
+          <th mat-header-cell *matHeaderCellDef>Total de Comissão</th>
+          <td mat-cell *matCellDef="let comissao">{{ formatarMoeda(comissao.totalComissao) }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </app-table-container>
+  </content>
+</app-page-layout>

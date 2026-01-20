@@ -1,0 +1,118 @@
+@use 'sass:map';
+@use 'themes/theme-colors' as colors;
+
+:host {
+    .nav-layout {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        overflow-x: hidden;
+        transition: all 0.3s ease;
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: .125rem;
+
+            li {
+                width: 100%;
+            }
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: .625rem;
+            padding: .75rem 1.0938rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+
+            font-size: .875rem;
+
+            .nav-text {
+                white-space: nowrap;
+                transition: opacity 0.3s ease;
+            }
+
+            &.active {
+                background-color: map.get(colors.$primary-palette, 80);
+                border-right: 3px solid map.get(colors.$primary-palette, 40);
+                color: colors.$tertiary-color;
+
+            }
+
+            &:hover {
+                background-color: map.get(colors.$primary-palette, 80);
+                color: colors.$tertiary-color;
+                transition: all 0.3s ease;
+            }
+        }
+
+        &.collapsed {
+            ul {
+                align-items: center;
+            }
+
+            a {
+                justify-content: center;
+                padding: .75rem;
+
+                .nav-text {
+                    opacity: 0;
+                    width: 0;
+                    overflow: hidden;
+                }
+            }
+        }
+
+        &-footer {
+            &-content {
+                padding: 0 1.0938rem;
+                transition: opacity 0.3s ease;
+
+                p {
+                    margin: 0;
+                    font-size: .5625rem;
+
+                    & + p {
+                        margin-top: .0625rem;
+                    }
+
+                    &.by-text {
+                        color: colors.$primary-color;
+                    }
+                }
+            }
+
+            mat-divider {
+                border-color: #F0F0F0;
+                margin: .9375rem 0 .75rem;
+            }
+
+            &-icon {
+                padding: 0 1.0938rem;
+                display: flex;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                mat-icon {
+                    font-size: 1.5rem;
+                }
+
+                &.no-collapsed {
+                    justify-content: flex-start;
+                }
+            }
+
+        }
+
+        &.collapsed &-footer {
+            &-icon {
+                padding: .75rem;
+                width: 100%;
+            }
+        }
+    } 
+}

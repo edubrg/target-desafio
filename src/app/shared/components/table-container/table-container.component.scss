@@ -1,0 +1,45 @@
+@use 'themes/theme-colors' as colors;
+
+:host {
+  .table-wrapper {
+    position: relative;
+    margin-top: 1rem;
+
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 4px;
+    }
+
+    .table-container {
+      table {
+        width: 100%;
+
+        th {
+          font-weight: 600;
+        }
+
+        button {
+          font-size: 0.875rem;
+
+          mat-icon {
+            font-size: 1.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Estornar Movimentação</h2>
+
+<mat-dialog-content>
+  <div class="movimentacao-info">
+    <h3>Informações da Movimentação</h3>
+    <div class="info-grid">
+      <div class="info-item">
+        <strong>Código:</strong>
+        <span>{{ data.codigoMovimentacao }}</span>
+      </div>
+      <div class="info-item">
+        <strong>Descrição:</strong>
+        <span>{{ data.descricaoMovimentacao }}</span>
+      </div>
+      <div class="info-item">
+        <strong>Data:</strong>
+        <span>{{ data.dataMovimentacao | date:'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+      <div class="info-item">
+        <strong>Tipo:</strong>
+        <span>{{ getTipoMovimentacaoLabel(data.tipoMovimentacao) }}</span>
+      </div>
+      <div class="info-item">
+        <strong>Quantidade:</strong>
+        <span>{{ data.quantidadeMovimentacao }}</span>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="confirmar()">
+    Confirmar Estorno
+  </button>
+</mat-dialog-actions>

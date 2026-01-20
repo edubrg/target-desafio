@@ -1,0 +1,43 @@
+<app-page-layout>
+  <header class="header-container">
+    <h1>Estoque</h1>
+    <mat-form-field>
+      <mat-label>Pesquisar produto</mat-label>
+      <input matInput placeholder="código ou descrição" [formControl]="pesquisarProduto">
+    </mat-form-field>
+  </header>
+  
+  <content>
+    <h2>Produtos em estoque</h2>
+    <app-table-container [loading]="loading">
+      <table mat-table [dataSource]="produtosFiltrados" class="mat-elevation-z8">
+        <ng-container matColumnDef="codigoProduto">
+          <th mat-header-cell *matHeaderCellDef>Código Produto</th>
+          <td mat-cell *matCellDef="let produto">{{ produto.codigoProduto }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="descricaoProduto">
+          <th mat-header-cell *matHeaderCellDef>Descrição</th>
+          <td mat-cell *matCellDef="let produto">{{ produto.descricaoProduto }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="estoque">
+          <th mat-header-cell *matHeaderCellDef>Estoque</th>
+          <td mat-cell *matCellDef="let produto">{{ produto.estoque }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef>Ações</th>
+          <td mat-cell *matCellDef="let produto">
+            <button mat-icon-button color="primary" (click)="verDetalhes(produto)" aria-label="Ver detalhes">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </app-table-container>
+  </content>
+</app-page-layout>

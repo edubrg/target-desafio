@@ -1,0 +1,24 @@
+@use 'themes/theme-colors' as colors;
+
+:host {
+  h1 {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    mat-form-field {
+      width: 18.75rem;
+    }
+  }
+}

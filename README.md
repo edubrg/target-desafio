@@ -1,59 +1,54 @@
-# GestaoEstoqueVendas
+# Gestão de Estoque e Vendas
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.
+Sistema de gestão de estoque e vendas desenvolvido em Angular.
 
-## Development server
+## Pré-requisitos
 
-To start a local development server, run:
+- Node.js (versão 18 ou superior)
+- npm (versão 11.6.2 ou superior)
+
+## Instalação
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/edubrg/target-desafio
+```
+
+2. Navegue até o diretório do projeto:
+
+```bash
+cd gestao-estoque-vendas
+```
+
+3. Instale as dependências:
+
+```bash
+npm install
+```
+
+## Executando o projeto
+
+Para iniciar o servidor de desenvolvimento:
+
+```bash
+npm start
+```
+
+ou
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+O aplicativo estará disponível em `http://localhost:4200/`. A aplicação recarrega automaticamente quando você modifica os arquivos de origem.
 
-## Code scaffolding
+## Build para produção
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Para gerar uma build de produção:
 
 ```bash
-ng generate --help
+npm run build
 ```
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Os arquivos compilados serão gerados no diretório `dist/`.

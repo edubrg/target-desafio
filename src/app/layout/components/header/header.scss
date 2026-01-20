@@ -1,0 +1,15 @@
+@use 'themes/theme-colors' as colors;
+
+:host {
+    .header-layout {
+        display: flex;
+        align-items: center;
+        padding: .4375rem 1.0938rem;
+        background: colors.$header-bg;
+
+        &-logo {
+            height: 2.25rem;
+            font-size: 2.25rem;
+        }
+    }
+}

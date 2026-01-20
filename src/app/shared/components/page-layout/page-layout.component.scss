@@ -1,0 +1,23 @@
+@use 'themes/theme-colors' as colors;
+
+:host {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+
+    .header {
+        display: flex;
+        align-items: center;
+
+        padding: 1.25rem 1.5rem;
+        background: colors.$white-color;
+    }
+
+    .content {
+        margin: 1rem 1.5rem;
+        padding: 1.25rem .625rem;
+        background: colors.$white-color;
+        height: 100%;
+        overflow-y: auto;
+    }
+}

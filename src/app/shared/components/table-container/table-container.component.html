@@ -1,0 +1,12 @@
+<div class="table-wrapper">
+  @if (loading) {
+    <div class="loading-overlay">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  }
+
+  <div class="table-container">
+    <ng-content></ng-content>
+  </div>
+</div>
+

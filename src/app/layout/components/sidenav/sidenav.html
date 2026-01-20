@@ -1,0 +1,31 @@
+<nav class="nav-layout" [class.collapsed]="isCollapsed">
+  <ul>
+    <li>
+      <a routerLink="/estoque" routerLinkActive="active">
+        <mat-icon>inventory</mat-icon>
+        <span class="nav-text">Estoque</span>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/comissao-vendas" routerLinkActive="active">
+        <mat-icon>currency_exchange</mat-icon>
+        <span class="nav-text">Comissão de vendas</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="nav-layout-footer">
+    @if (!isCollapsed) {
+      <div class="nav-layout-footer-content">
+        <p>Direitos reservados &copy;2026</p>
+        <p class="by-text">by Eduardo Vidal Borges</p>
+        <p>Versão 1.0.0</p>
+      </div>
+      <mat-divider />
+    }
+    <div class="nav-layout-footer-icon" [class.no-collapsed]="!isCollapsed" (click)="onToggleClick()">
+      <mat-icon>{{ isCollapsed ? 'menu' : 'menu_open' }}</mat-icon>
+    </div>
+  </div>
+</nav>

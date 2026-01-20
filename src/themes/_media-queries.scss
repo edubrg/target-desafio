@@ -1,0 +1,28 @@
+@use 'sass:map';
+
+$breakpoints: (
+  'mobile': 320px,
+  'tablet': 768px,
+  'laptop': 1024px,
+  'laptop-hd': 1440px,
+  'desktop': 1920px,
+  'ultrawide': 2560px
+);
+
+@mixin respond($breakpoint, $type: max-width) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map.get($breakpoints, $breakpoint);
+    
+    @if $type == min-width {
+      @media (min-width: $breakpoint-value) {
+        @content;
+      }
+    } @else {
+      @media (max-width: $breakpoint-value) {
+        @content;
+      }
+    }
+  } @else {
+    @warn "Breakpoint '#{$breakpoint}' não encontrado. Breakpoints disponíveis: #{map.keys($breakpoints)}";
+  }
+}

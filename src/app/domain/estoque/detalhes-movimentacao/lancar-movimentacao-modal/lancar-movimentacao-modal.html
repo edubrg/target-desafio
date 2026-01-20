@@ -1,0 +1,76 @@
+<h2 mat-dialog-title>Lançar Movimentação</h2>
+
+<mat-dialog-content>
+  <div class="produto-info">
+    <h3>Informações do Produto</h3>
+    <div class="info-grid">
+      <div class="info-item">
+        <strong>Código:</strong>
+        <span>{{ data.codigoProduto }}</span>
+      </div>
+      <div class="info-item">
+        <strong>Descrição:</strong>
+        <span>{{ data.descricaoProduto }}</span>
+      </div>
+      <div class="info-item">
+        <strong>Estoque Atual:</strong>
+        <span>{{ data.estoque }}</span>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="lancarForm" class="lancar-form">
+    <h3>Dados da Movimentação</h3>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Código</mat-label>
+      <input matInput formControlName="codigoMovimentacao" placeholder="Ex: MV-001, COMP-2025-01" />
+      @if (lancarForm.get('codigoMovimentacao')?.hasError('required') && lancarForm.get('codigoMovimentacao')?.touched) {
+        <mat-error>Código é obrigatório</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descrição</mat-label>
+      <input matInput formControlName="descricaoMovimentacao" placeholder="Ex: Compra de fornecedor, Venda para cliente" />
+      @if (lancarForm.get('descricaoMovimentacao')?.hasError('required') && lancarForm.get('descricaoMovimentacao')?.touched) {
+        <mat-error>Descrição é obrigatória</mat-error>
+      }
+      @if (lancarForm.get('descricaoMovimentacao')?.hasError('maxlength')) {
+        <mat-error>Descrição deve ter no máximo 255 caracteres</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Data/Hora</mat-label>
+      <input matInput formControlName="dataMovimentacao" [disabled]="true" />
+      <mat-hint>Data e horário atual do lançamento</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Quantidade</mat-label>
+      <input matInput type="number" formControlName="quantidadeMovimentacao" placeholder="Positivo para entrada, negativo para saída" />
+      <mat-hint>
+        @if (quantidade !== 0 && quantidade !== null) {
+          Tipo: <strong>{{ tipoMovimentacao }}</strong>
+        }
+      </mat-hint>
+      @if (lancarForm.get('quantidadeMovimentacao')?.hasError('required') && lancarForm.get('quantidadeMovimentacao')?.touched) {
+        <mat-error>Quantidade é obrigatória</mat-error>
+      }
+      @if (lancarForm.get('quantidadeMovimentacao')?.hasError('pattern')) {
+        <mat-error>Quantidade deve ser um número inteiro</mat-error>
+      }
+      @if (lancarForm.get('quantidadeMovimentacao')?.hasError('quantidadeZero')) {
+        <mat-error>Quantidade não pode ser zero</mat-error>
+      }
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="confirmar()" [disabled]="!podeLancar">
+    Confirmar Lançamento
+  </button>
+</mat-dialog-actions>

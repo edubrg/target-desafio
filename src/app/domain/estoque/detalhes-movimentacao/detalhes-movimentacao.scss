@@ -1,0 +1,81 @@
+@use 'sass:map';
+@use 'themes/theme-colors' as colors;
+
+:host {
+  h1 {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+
+    strong {
+      color: map.get(colors.$primary-palette, 40);
+    }
+
+    .detalhes-produto {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: .4375rem;
+    }
+
+    .unidades-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: .4375rem;
+
+      ul {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+  }
+
+  .filtro-form {
+    margin-bottom: 24px;
+
+    .filtro-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+
+      .filtro-date-range {
+        flex: 1;
+      }
+
+      .filtro-busca {
+        flex: 1;
+      }
+
+      .btn-limpar {
+        margin-top: 8px;
+      }
+    }
+  }
+
+  .valor-negativo {
+    color: #f44336;
+    font-weight: 500;
+  }
+
+  .estoque-negativo {
+    color: #f44336;
+    font-weight: 600;
+  }
+}

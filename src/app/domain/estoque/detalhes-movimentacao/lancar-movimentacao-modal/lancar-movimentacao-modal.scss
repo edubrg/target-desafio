@@ -1,0 +1,97 @@
+@use 'themes/theme-colors' as colors;
+
+:host {
+  mat-dialog-content {
+    min-width: 500px;
+    padding: 24px;
+  }
+
+  .produto-info {
+    margin-bottom: 24px;
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.02);
+    border-radius: 4px;
+
+    h3 {
+      margin: 0 0 16px 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.87);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+
+      .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        strong {
+          font-size: 0.875rem;
+          font-weight: 500;
+          color: rgba(0, 0, 0, 0.6);
+        }
+
+        span {
+          font-size: 0.875rem;
+          color: rgba(0, 0, 0, 0.87);
+        }
+      }
+    }
+  }
+
+  .lancar-form {
+    h3 {
+      margin: 0 0 16px 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.87);
+    }
+
+    .full-width {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .aviso-quantidade {
+      color: #f44336;
+      font-weight: 500;
+    }
+
+    .aviso-estoque {
+      margin-top: 16px;
+      padding: 12px;
+      background-color: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 4px;
+      color: #856404;
+
+      p {
+        margin: 0;
+        font-size: 0.875rem;
+        line-height: 1.5;
+
+        &:not(:last-child) {
+          margin-bottom: 8px;
+        }
+
+        strong {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  mat-dialog-actions {
+    padding: 16px 24px;
+    margin: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+    button {
+      margin-left: 8px;
+    }
+  }
+}
